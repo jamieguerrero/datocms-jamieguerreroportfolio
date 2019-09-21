@@ -12,6 +12,8 @@ module.exports = {
       resolve: `gatsby-source-datocms`,
       options: {
         apiToken: process.env.DATO_API_TOKEN,
+        // Disable automatic reloading of content when some change occurs on DatoCMS:
+        disableLiveReload: false,
       },
     },
   ],
