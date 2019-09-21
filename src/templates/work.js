@@ -11,6 +11,12 @@ export default ({ data }) => (
       <HelmetDatoCms seo={data.datoCmsWork.seoMetaTags} />
       <div className="sheet__inner">
         <h1 className="sheet__title">{data.datoCmsWork.title}</h1>
+        Tags:
+        <ul>
+          {data.datoCmsWork.tags.map((tagName) => {
+            return(<li><a href={`/tags/${tagName}`}>{`${tagName}`}</a></li>)
+          })}
+        </ul>
         <p className="sheet__lead">{data.datoCmsWork.excerpt}</p>
         <div className="sheet__slider">
           <Slider infinite={true} slidesToShow={2} arrows>
@@ -57,6 +63,7 @@ export const query = graphql`
           ...GatsbyDatoCmsSizes
         }
       }
+      tags
     }
   }
 `

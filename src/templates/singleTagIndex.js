@@ -3,7 +3,6 @@ import { graphql, Link } from 'gatsby'
 
 const SingleTagTemplate = ({data, pageContext}) => {
   const { posts, tagName } = pageContext
-  console.log(posts)
   return (
     <div style={{fontFamily: 'avenir'}}>
       <div>

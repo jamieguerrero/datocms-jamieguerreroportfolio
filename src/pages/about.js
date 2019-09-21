@@ -4,26 +4,31 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import Layout from "../components/layout"
 
-const About = ({ data: { about } }) => (
-  <Layout>
-    <article className="sheet">
-      <HelmetDatoCms seo={about.seoMetaTags} />
-      <div className="sheet__inner">
-        <h1 className="sheet__title">{about.title}</h1>
-        <p className="sheet__lead">{about.subtitle}</p>
-        <div className="sheet__gallery">
-          <Img fluid={about.photo.fluid} />
+const About = ({ data: { about } }) => {
+  return (
+    <Layout>
+      <article className="sheet">
+        <HelmetDatoCms seo={about.seoMetaTags} />
+        <div className="sheet__inner">
+          <h1 className="sheet__title">{about.title}</h1>
+          <p className="sheet__lead">{about.subtitle}</p>
+          <div className="sheet__gallery">
+            <Img fluid={about.photo.fluid} />
+          </div>
+          <div
+            className="sheet__body"
+            dangerouslySetInnerHTML={{
+              __html: about.bioNode.childMarkdownRemark.html,
+            }}
+          />
+          <a href={about.githubUrl}>Github URL</a>
+          <a href={"mailto:" + about.email}>{about.email}</a>
+          <a href={about.resume.url}>Resumé</a>
         </div>
-        <div
-          className="sheet__body"
-          dangerouslySetInnerHTML={{
-            __html: about.bioNode.childMarkdownRemark.html,
-          }}
-        />
-      </div>
-    </article>
-  </Layout>
-)
+
+      </article>
+    </Layout>
+)}
 
 export default About
 
@@ -44,6 +49,12 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+      }
+      githubUrl
+      email
+      city
+      resume {
+        url
       }
     }
   }
