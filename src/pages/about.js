@@ -21,9 +21,7 @@ const About = ({ data: { about } }) => {
               __html: about.bioNode.childMarkdownRemark.html,
             }}
           />
-          <a href={about.githubUrl}>Github URL</a>
-          <a href={"mailto:" + about.email}>{about.email}</a>
-          <a href={about.resume.url}>Resumé</a>
+          
         </div>
 
       </article>

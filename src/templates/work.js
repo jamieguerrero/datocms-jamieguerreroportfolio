@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import Slider from 'react-slick'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
@@ -11,12 +12,17 @@ export default ({ data }) => (
       <HelmetDatoCms seo={data.datoCmsWork.seoMetaTags} />
       <div className="sheet__inner">
         <h1 className="sheet__title">{data.datoCmsWork.title}</h1>
-        Tags:
-        <ul>
-          {data.datoCmsWork.tags.map((tagName) => {
-            return(<li><a href={`/tags/${tagName}`}>{`${tagName}`}</a></li>)
-          })}
-        </ul>
+        <div className="sheet__tags">
+          Tags:
+          <ul className="sheet__taglist">
+            {data.datoCmsWork.tags.map((tagName) => {
+              return(<li><Link to={`/tags/${tagName}`}>{`${tagName}`}</Link></li>)
+            })}
+          </ul>
+        </div>
+        <video loop muted autoplay controls style={{"max-width":"600px"}} >
+          <source src={data.datoCmsWork.videofile.url} />
+        </video>
         <p className="sheet__lead">{data.datoCmsWork.excerpt}</p>
         <div className="sheet__slider">
           <Slider infinite={true} slidesToShow={2} arrows>
@@ -31,9 +37,7 @@ export default ({ data }) => (
             __html: data.datoCmsWork.descriptionNode.childMarkdownRemark.html,
           }}
         />
-        <div className="sheet__gallery">
-          <Img fluid={data.datoCmsWork.coverImage.fluid} />
-        </div>
+
       </div>
     </article>
   </Layout>
@@ -64,6 +68,9 @@ export const query = graphql`
         }
       }
       tags
+      videofile {
+  			url
+      }
     }
   }
 `

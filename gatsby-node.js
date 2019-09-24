@@ -20,7 +20,6 @@ const createTagPages = (createPage, posts) => {
   })
 
   const tags = Object.keys(postsByTag)
-  console.log(tags)
   createPage({
     path: '/tags',
     component: allTagsIndexTemplate,

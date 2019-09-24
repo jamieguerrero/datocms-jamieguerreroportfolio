@@ -17,6 +17,7 @@ const IndexPage = ({ data }) => (
               <h6 className="card__title">
                 <Link to={`/works/${work.slug}`}>{work.title}</Link>
               </h6>
+              <sub>{work.excerptSub}</sub>
               <div className="card__description">
                 <p>{work.excerpt}</p>
               </div>
@@ -39,6 +40,7 @@ export const query = graphql`
           title
           slug
           excerpt
+          excerptSub
           coverImage {
             fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
               ...GatsbyDatoCmsSizes
