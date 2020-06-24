@@ -4,8 +4,6 @@ import { Link } from 'gatsby'
 import { StaticQuery, graphql } from "gatsby"
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 
-import '../styles/index.sass'
-
 const TemplateWrapper = ({ children }) => (
   <StaticQuery query={graphql`
     query LayoutQuery
