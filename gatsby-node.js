@@ -81,3 +81,22 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 }
+
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    plugins: [
+      plugins.define({
+        __DEVELOPMENT__: stage === `develop` || stage === `develop-html`,
+      }),
+    ],
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+  })
+}
